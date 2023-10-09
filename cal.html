@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            padding:20px;
+            box-sizing:border-box;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator-container {
+            display: flex;
+            flex-direction: column; /* Display calculator on top of the box */
+            align-items: center;
+            background-color: #444;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 100%;
+            margin: auto; /* Center the container */
+            padding: 20px;
+        }
+
+        .calculator {
+            background-color: #444;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .calculator-screen {
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 24px;
+            grid-column: span 3;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .calculator-button {
+            background-color: #666;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .calculator-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1> Calculator </h1>
+        <div class="calculator">
+            <input type="text" class="calculator-screen" id="display" value="" disabled>
+            <button class="calculator-button" onclick="clearDisplay()">C</button>
+            <button class="calculator-button" onclick="calculate()">=</button>
+            <button class="calculator-button" onclick="backSpace()">Del</button>
+            <button class="calculator-button" onclick="appendToDisplay('9')">9</button>
+            <button class="calculator-button" onclick="appendToDisplay('8')">8</button>
+            <button class="calculator-button" onclick="appendToDisplay('7')">7</button>
+            <button class="calculator-button" onclick="appendToDisplay('4')">4</button>
+            <button class="calculator-button" onclick="appendToDisplay('5')">5</button>
+            <button class="calculator-button" onclick="appendToDisplay('6')">6</button>
+            <button class="calculator-button" onclick="appendToDisplay('3')">3</button>
+            <button class="calculator-button" onclick="appendToDisplay('2')">2</button>
+            <button class="calculator-button" onclick="appendToDisplay('1')">1</button>
+            <button class="calculator-button" onclick="appendToDisplay('0')">0</button>
+            <button class="calculator-button" onclick="appendToDisplay('.')">.</button>
+            <button class="calculator-button" onclick="appendToDisplay('+')">+</button>
+            <button class="calculator-button" onclick="appendToDisplay('-')">-</button>
+            <button class="calculator-button" onclick="appendToDisplay('*')">*</button>
+            <button class="calculator-button" onclick="appendToDisplay('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        function backSpace() {
+            var display = document.getElementById("display"); 
+            var currentValue = display.value;
+            if (currentValue.length > 0) {
+                display.value = currentValue.slice(0, -1); 
+            }
+        }
+
+    </script>
+</body>
+</html>
